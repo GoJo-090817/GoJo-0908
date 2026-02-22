@@ -29,7 +29,7 @@
 
         .container { max-width: 980px; margin: 0 auto; padding: 0 24px; }
 
-        /* 2. 导航栏：毛玻璃显隐效果 */
+        /* 2. 导航栏 */
         .navbar {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -56,54 +56,45 @@
         }
         .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .hero-name { font-size: clamp(40px, 8vw, 56px); font-weight: 700; margin-bottom: 12px; }
-        .hero-title { color: var(--accent-blue); font-size: clamp(18px, 4vw, 24px); margin-bottom: 32px; }
+        .hero-title { color: var(--accent-blue); font-size: clamp(18px, 4vw, 24px); margin-bottom: 24px; }
         
-        .contact-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin-top: 20px; }
-        .contact-item { font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
+        .contact-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin-bottom: 40px; }
+        .contact-item { font-size: 14px; color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .contact-item:hover { color: var(--accent-blue); }
 
-        /* 4. 浮窗居中优化 (核心修改点) */
-        .preview-modal {
-            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.9); z-index: 2000;
-            /* 使用 Flex 确保内容居中 */
-            display: none; align-items: center; justify-content: center;
-            padding: 20px;
-        }
+        /* 技能标签 */
+        .skill-tags { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .skill-tag { background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 6px 16px; border-radius: 20px; font-size: 13px; color: var(--text-primary); }
+        .skill-tag.highlight { border-color: var(--accent-blue); color: var(--accent-blue); }
 
-        .preview-modal.active { display: flex; } /* 激活时变为弹性盒子 */
-
-        .preview-content {
-            background: var(--card-bg); border-radius: 28px;
-            padding: 40px; width: 100%; max-width: 600px;
-            position: relative; border: 1px solid var(--border-color);
-            max-height: 85vh; overflow-y: auto;
-        }
-
-        /* 5. 经历与项目卡片 */
-        .section-title { font-size: 32px; margin: 80px 0 40px; text-align: center; }
+        /* 4. 经历与项目卡片 */
+        .section-title { font-size: 32px; margin: 80px 0 40px; text-align: center; font-weight: 600; }
         .experience-item, .project-card {
             background: var(--card-bg); border-radius: 24px; padding: 40px;
             margin-bottom: 24px; border: 1px solid var(--border-color);
-            transition: var(--transition-smooth); cursor: pointer;
+            transition: var(--transition-smooth);
         }
-        .experience-item:hover { border-color: var(--accent-blue); transform: scale(1.01); }
+        .experience-item:hover { border-color: var(--accent-blue); transform: translateY(-4px); }
 
         .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; flex-wrap: wrap; gap: 10px; }
         .exp-company { font-size: 22px; font-weight: 700; }
         .exp-period { font-size: 13px; padding: 4px 12px; background: #000; border-radius: 12px; color: var(--text-secondary); }
         .exp-highlight { color: var(--accent-blue); font-weight: 600; }
 
-        /* 列表点样式 */
         .content-list { list-style: none; color: var(--text-secondary); font-size: 15px; }
-        .content-list li { margin-bottom: 12px; position: relative; padding-left: 18px; }
+        .content-list li { margin-bottom: 12px; position: relative; padding-left: 18px; text-align: justify; }
         .content-list li::before { content: "•"; position: absolute; left: 0; color: var(--accent-blue); }
+
+        /* 教育背景 */
+        .edu-card { background: var(--card-bg); padding: 40px; border-radius: 24px; text-align: center; border: 1px solid var(--border-color); margin-bottom: 100px; }
 
         /* 移动端适配 */
         @media (max-width: 768px) {
             .nav-menu { display: none; }
+            .hero { padding: 100px 0 40px; }
             .experience-item, .project-card { padding: 24px; }
             .exp-header { flex-direction: column; }
-            .preview-content { padding: 30px 20px; }
+            .section-title { margin: 60px 0 30px; }
         }
     </style>
 </head>
@@ -111,10 +102,10 @@
 
     <nav class="navbar" id="navbar">
         <div class="nav-container container">
-            <div class="nav-logo">陈江浩</div>
+            <div class="nav-logo">陈江浩 | Portfolio</div>
             <ul class="nav-menu">
                 <li><a href="#experience" class="nav-link">工作经历</a></li>
-                <li><a href="#projects" class="nav-link">项目经历</a></li>
+                <li><a href="#projects" class="nav-link">重点项目</a></li>
                 <li><a href="#education" class="nav-link">教育背景</a></li>
             </ul>
         </div>
@@ -123,14 +114,23 @@
     <main class="container">
         <section class="hero">
             <div class="hero-avatar">
-                <img src="IMG_3016.JPG" alt="陈江浩" onerror="this.src='https://via.placeholder.com/140/1d1d1f/f5f5f7?text=CJH'">
+                <img src="https://via.placeholder.com/140/1d1d1f/f5f5f7?text=CJH" alt="陈江浩">
             </div>
             <h1 class="hero-name">陈江浩</h1>
             <p class="hero-title">策略运营 / 服务中台运营</p>
+            
             <div class="contact-info">
-                <div class="contact-item">📞 13262776097</div>
-                <div class="contact-item">📧 kousuke7197@163.com</div>
+                <a href="tel:13262776097" class="contact-item">📞 13262776097</a>
+                <a href="mailto:kousuke7197@163.com" class="contact-item">📧 kousuke7197@163.com</a>
                 <div class="contact-item">📍 上海</div>
+            </div>
+
+            <div class="skill-tags">
+                <span class="skill-tag highlighted">SQL 数据拆解</span>
+                <span class="skill-tag">Excel 可视化</span>
+                <span class="skill-tag highlight">AI 驱动提效 (Gemini/GPT)</span>
+                <span class="skill-tag">日语 N1</span>
+                <span class="skill-tag">跨部门协同</span>
             </div>
         </section>
 
@@ -146,9 +146,9 @@
                     <span class="exp-period">2026.01 - 至今</span>
                 </div>
                 <ul class="content-list">
-                    <p style="margin-bottom:12px; color: var(--text-primary)">聚焦全渠道用户体验优化，以“用户声音-业务推动”为核心链路开展工作：</p>
-                    <li><strong>需求侧：</strong>统筹调研问卷、NPS反馈等全渠道用户声音收集，通过内部智能文档（飞书多维表格同源工具）完成数据整理、可视化看板输出，沉淀体检/健康商城/护工服务等核心业务的体验痛点；</li>
-                    <li><strong>供给侧：</strong>联动业务方推动优化落地（如服务策略迭代、供应商资源覆盖率提升、产品功能调整），累计跟进12个体验优化项目，核心业务 <span class="exp-highlight">NPS提升 5%</span>。</li>
+                    <p style="margin-bottom:12px; color: var(--text-primary)">聚焦全渠道用户体验优化，以“用户声音-业务推动”为核心链路：</p>
+                    <li><strong>需求侧：</strong>统筹调研问卷、NPS反馈等数据整理及可视化看板输出，深挖体检、护工等核心业务体验痛点。</li>
+                    <li><strong>供给侧：</strong>联动业务方推动落地优化项目 12 个，实现核心业务 <span class="exp-highlight">NPS 提升 5%</span>。</li>
                 </ul>
             </div>
 
@@ -156,47 +156,60 @@
                 <div class="exp-header">
                     <div>
                         <div class="exp-company">上海携程国际旅行社有限公司</div>
-                        <div style="color: var(--accent-blue); margin-top: 4px;">日本市场机票板块 | 高级知识分析师</div>
+                        <div style="color: var(--accent-blue); margin-top: 4px;">国际业务部门-日本市场机票板块 | 高级知识分析师</div>
                     </div>
                     <span class="exp-period">2022.05 - 2025.12</span>
                 </div>
                 <ul class="content-list">
-                    <p style="margin-bottom:12px; color: var(--text-primary)">聚焦服务团队痛点，以数据拆解+流程梳理能力，定位供应商出票不规范、外呼策略低效等核心问题：</p>
-                    <li><strong>对外：</strong>联动产品/业务端推动优化（如上线时段接通率数据看板、规范供应商出票流程），实现对客 <span class="exp-highlight">服务效率提升 25%</span>、<span class="exp-highlight">人力成本削减 18%</span>；</li>
-                    <li><strong>对内：</strong>开展专项培训（如VoIP工具使用、问题应对技巧），强化员工处理能力，团队 <span class="exp-highlight">响应时效缩短 20%</span>。</li>
+                    <p style="margin-bottom:12px; color: var(--text-primary)">以数据拆解+流程梳理能力，解决出票规范及外呼效率等核心问题：</p>
+                    <li><strong>效率提升：</strong>通过上线时段接通率看板及规范流程，实现 <span class="exp-highlight">服务效率提升 25%</span>，<span class="exp-highlight">人力成本削减 18%</span>。</li>
+                    <li><strong>响应优化：</strong>开展 VoIP 工具使用及专项培训，使团队响应时效 <span class="exp-highlight">缩短 20%</span>。</li>
                 </ul>
             </div>
         </section>
 
         <section id="projects">
             <h2 class="section-title">重点项目</h2>
+            
             <div class="project-card">
-                <h3 style="margin-bottom:16px;">数据驱动的工单时长赋值与配置项目</h3>
-                <p style="color:var(--text-secondary); font-size:14px; margin-bottom:16px;">推动分配模式变革：从传统排队分配转变为依据个人处理上限分配的智能化模式。</p>
-                <p style="font-size:15px;">🏆 成果：工单承载量提升 <span class="exp-highlight">35%</span>，处理效率从 17h/case 优化至 <span class="exp-highlight">12h/case</span>。</p>
+                <h3 style="margin-bottom:16px;">智能工单分配与资源优化项目</h3>
+                <ul class="content-list">
+                    <li>将分配模式从“传统排队”升级为“个人处理上限”驱动的智能化模式，解决忙闲不均问题。</li>
+                    <li><strong>成果：</strong>工单处理效率从 17h/case 优化至 <span class="exp-highlight">12h/case</span>，单日承载量提升 <span class="exp-highlight">35%</span>。</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <h3 style="margin-bottom:16px;">自动化外呼与服务提效项目</h3>
+                <ul class="content-list">
+                    <li>通过取数分析对比接通率，推动自动化外呼及邮件上线，将 Voip 使用率从 5% 提升至 <span class="exp-highlight">60%</span>。</li>
+                    <li><strong>成果：</strong>电话接通率提升至 28%，单月节省人力成本约 <span class="exp-highlight">4 万元</span>。</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <h3 style="margin-bottom:16px;">供应商服务流程标准化项目</h3>
+                <ul class="content-list">
+                    <li>提取无证件预定数据关键词，建立“监控-同步-标准”闭环，精准打击供应商冗余索要证件行为。</li>
+                    <li><strong>成果：</strong>暂缓出票量 <span class="exp-highlight">月减 80%</span>，该模式已复用至 2 个同类场景。</li>
+                </ul>
             </div>
         </section>
 
-        <section id="education" style="margin-bottom: 100px;">
+        <section id="education">
             <h2 class="section-title">教育背景</h2>
-            <div style="background:var(--card-bg); padding:40px; border-radius:24px; text-align:center; border: 1px solid var(--border-color);">
-                <h3 style="font-size:22px;">早稻田大学</h3>
-                <p style="color:var(--text-secondary); margin:8px 0;">英语语言文学 | 本科</p>
-                <p style="font-size:14px; color:var(--accent-blue);">2018.04 - 2022.03</p>
-                <div style="margin-top:16px; display:inline-block; border:1px solid var(--accent-blue); padding:4px 12px; border-radius:8px; color:var(--accent-blue); font-size:13px;">
-                    证书：日语 N1 (2021.12)
+            <div class="edu-card">
+                <h3 style="font-size:22px;">早稻田大学 (Waseda University)</h3>
+                <p style="color:var(--text-secondary); margin:8px 0;">英语语言文学 | 本科 | 2018.04 - 2022.03</p>
+                <div style="margin-top:16px; display:inline-block; border:1px solid var(--accent-blue); padding:4px 16px; border-radius:12px; color:var(--accent-blue); font-size:14px; font-weight: 500;">
+                    语言资格：日语 N1 (2021.12)
                 </div>
+                <p style="margin-top:20px; color: var(--text-secondary); font-size: 14px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                    自我评价：具备 3 年+服务运营经验，擅长“数据拆解-流程优化-跨部门协同”。聚焦 AI 驱动的运营场景。
+                </p>
             </div>
         </section>
     </main>
-
-    <div class="preview-modal" id="previewModal">
-        <div class="preview-content">
-            <button id="closeBtn" style="position:absolute; top:20px; right:20px; background:none; border:none; color:#fff; font-size:24px; cursor:pointer;">&times;</button>
-            <div id="modalBody">
-                </div>
-        </div>
-    </div>
 
     <script>
         // 导航栏滚动显隐逻辑
@@ -211,17 +224,6 @@
             }
             lastScrollY = window.scrollY;
         });
-
-        // 浮窗居中测试逻辑 (点击工作经历卡片可触发)
-        const modal = document.getElementById('previewModal');
-        const closeBtn = document.getElementById('closeBtn');
-
-        // 点击背景关闭
-        modal.addEventListener('click', (e) => {
-            if(e.target === modal) modal.classList.remove('active');
-        });
-        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
-
     </script>
 </body>
 </html>
