@@ -201,12 +201,18 @@
         }
 
         /* Work Experience */
+        .experience-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
         .experience-item {
             background: var(--card-bg);
             border-radius: 24px;
             padding: 48px;
-            margin-bottom: 32px;
             transition: var(--transition-smooth);
+            height: 100%;
         }
 
         .experience-item:hover {
@@ -291,6 +297,50 @@
 
         .preview-modal.active .preview-content {
             transform: scale(1);
+        }
+
+        /* 浮窗切换按钮样式 */
+        .preview-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .preview-nav-btn {
+            pointer-events: all;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 2002;
+        }
+
+        .preview-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .preview-nav-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-primary);
+        }
+
+        .preview-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .preview-close {
@@ -479,13 +529,18 @@
         }
 
         /* Projects */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 24px;
+        }
         .project-card {
             background: linear-gradient(135deg, var(--card-bg) 0%, rgba(29, 29, 31, 0.8) 100%);
             border-radius: 24px;
             padding: 40px;
-            margin-bottom: 24px;
             border: 1px solid var(--border-color);
             transition: var(--transition-smooth);
+            height: 100%;
         }
 
         .project-card:hover {
@@ -821,6 +876,12 @@
             .exp-header {
                 flex-direction: column;
             }
+            
+            /* 移动端恢复单列布局 */
+            .experience-container,
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -851,7 +912,7 @@
     <section class="hero" id="home">
         <div class="container hero-content">
             <div class="hero-avatar">
-                <img src="IMG_3016.JPG" alt="陈江浩">
+                <img src="IMG_3016.JPG" alt="陈江浩" onerror="this.src='https://via.placeholder.com/180/1d1d1f/f5f5f7?text=陈江浩'">
             </div>
             <h1 class="hero-name">陈江浩</h1>
             <p class="hero-title">求职意向：策略运营 / 服务中台运营</p>
@@ -905,33 +966,34 @@
     <section class="fade-in" id="experience">
         <div class="container">
             <h2 class="section-title"><span>工作经历</span></h2>
-            
-            <div class="experience-item">
-                <div class="exp-header">
-                    <div>
-                        <div class="exp-company">平安健康互联网股份有限公司</div>
-                        <div class="exp-position">服务质量部 | 用户体验管理岗</div>
+            <div class="experience-container">
+                <div class="experience-item" data-type="experience" data-index="0">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-company">平安健康互联网股份有限公司</div>
+                            <div class="exp-position">服务质量部 | 用户体验管理岗</div>
+                        </div>
+                        <div class="exp-period">2026.01 - 至今 | 上海</div>
                     </div>
-                    <div class="exp-period">2026.01 - 至今 | 上海</div>
+                    <div class="exp-content">
+                        <p><span class="exp-highlight">聚焦全渠道用户体验优化</span>，以"用户声音-业务推动"为核心链路开展工作：</p>
+                        <p><strong>需求侧：</strong>统筹调研问卷、NPS反馈等全渠道用户声音收集，通过内部智能文档（飞书多维表格同源工具）完成数据整理、可视化看板输出，沉淀体检/健康商城/护工服务等核心业务的体验痛点。</p>
+                        <p><strong>供给侧：</strong>联动业务方推动优化落地（如服务策略迭代、供应商资源覆盖率提升、产品功能调整），累计跟进12个体验优化项目，<span class="exp-highlight">核心业务NPS提升5%</span>。</p>
+                        <p><strong>服务团队效率提升：</strong>开展专项培训（如VoIP工具使用、问题应对技巧），强化员工处理能力，<span class="exp-highlight">团队响应时效缩短20%</span>；实现对客服务效率提升25%、人力成本削减18%。</p>
+                    </div>
                 </div>
-                <div class="exp-content">
-                    <p><span class="exp-highlight">聚焦全渠道用户体验优化</span>，以"用户声音-业务推动"为核心链路开展工作：</p>
-                    <p><strong>需求侧：</strong>统筹调研问卷、NPS反馈等全渠道用户声音收集，通过内部智能文档（飞书多维表格同源工具）完成数据整理、可视化看板输出，沉淀体检/健康商城/护工服务等核心业务的体验痛点。</p>
-                    <p><strong>供给侧：</strong>联动业务方推动优化落地（如服务策略迭代、供应商资源覆盖率提升、产品功能调整），累计跟进12个体验优化项目，<span class="exp-highlight">核心业务NPS提升5%</span>。</p>
-                    <p><strong>服务团队效率提升：</strong>开展专项培训（如VoIP工具使用、问题应对技巧），强化员工处理能力，<span class="exp-highlight">团队响应时效缩短20%</span>；实现对客服务效率提升25%、人力成本削减18%。</p>
-                </div>
-            </div>
 
-            <div class="experience-item">
-                <div class="exp-header">
-                    <div>
-                        <div class="exp-company">上海携程国际旅行社有限公司</div>
-                        <div class="exp-position">国际业务部门 - 日本市场机票板块 | 高级知识分析师</div>
+                <div class="experience-item" data-type="experience" data-index="1">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-company">上海携程国际旅行社有限公司</div>
+                            <div class="exp-position">国际业务部门 - 日本市场机票板块 | 高级知识分析师</div>
+                        </div>
+                        <div class="exp-period">2022.05 - 2025.12 | 上海</div>
                     </div>
-                    <div class="exp-period">2022.05 - 2025.12 | 上海</div>
-                </div>
-                <div class="exp-content">
-                    <p>负责日本市场机票业务的数据分析与流程优化，通过数据驱动的方式提升服务效率、降低人力成本，主导多个重点项目并取得显著成果。</p>
+                    <div class="exp-content">
+                        <p>负责日本市场机票业务的数据分析与流程优化，通过数据驱动的方式提升服务效率、降低人力成本，主导多个重点项目并取得显著成果。</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -941,46 +1003,47 @@
     <section class="fade-in" id="projects">
         <div class="container">
             <h2 class="section-title"><span>项目经历</span></h2>
-            
-            <div class="project-card">
-                <div class="project-title">数据驱动的工单时长赋值与资源合理配置项目</div>
-                <div class="project-role">项目负责人</div>
-                <div class="project-period">2025.01 - 2025.06</div>
-                <div class="project-bg">
-                    <strong>项目背景：</strong>因员工能力差异导致工单处理效率不同，而工单分配系统未实现"能者多分"的智能化分配，出现"忙闲不均"现象。
+            <div class="projects-container">
+                <div class="project-card" data-type="project" data-index="0">
+                    <div class="project-title">数据驱动的工单时长赋值与资源合理配置项目</div>
+                    <div class="project-role">项目负责人</div>
+                    <div class="project-period">2025.01 - 2025.06</div>
+                    <div class="project-bg">
+                        <strong>项目背景：</strong>因员工能力差异导致工单处理效率不同，而工单分配系统未实现"能者多分"的智能化分配，出现"忙闲不均"现象。
+                    </div>
+                    <div class="project-achievements">
+                        <div class="achievement-item">推动工单分配模式变革，从传统排队分配转变为依据个人处理上限分配的智能化模式</div>
+                        <div class="achievement-item">取数分析各类工单类型，结合领班经验，为每个业务类型合理赋值</div>
+                        <div class="achievement-item"><span class="exp-highlight">工单处理效率从 17hour/case 优化至 12hour/case，团队单日工单承载量提升 35%</span></div>
+                    </div>
                 </div>
-                <div class="project-achievements">
-                    <div class="achievement-item">推动工单分配模式变革，从传统排队分配转变为依据个人处理上限分配的智能化模式</div>
-                    <div class="achievement-item">取数分析各类工单类型，结合领班经验，为每个业务类型合理赋值</div>
-                    <div class="achievement-item"><span class="exp-highlight">工单处理效率从 17hour/case 优化至 12hour/case，团队单日工单承载量提升 35%</span></div>
-                </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-title">数据驱动下的服务效率提升与人力成本降低项目</div>
-                <div class="project-role">项目负责人</div>
-                <div class="project-period">2025.01 - 2025.05</div>
-                <div class="project-bg">
-                    <strong>项目背景：</strong>针对日本市场航班变动场景，需从旅行社单向联系客人通知信息，因联系不上客人严重消耗人力。
+                <div class="project-card" data-type="project" data-index="1">
+                    <div class="project-title">数据驱动下的服务效率提升与人力成本降低项目</div>
+                    <div class="project-role">项目负责人</div>
+                    <div class="project-period">2025.01 - 2025.05</div>
+                    <div class="project-bg">
+                        <strong>项目背景：</strong>针对日本市场航班变动场景，需从旅行社单向联系客人通知信息，因联系不上客人严重消耗人力。
+                    </div>
+                    <div class="project-achievements">
+                        <div class="achievement-item">推动自动化外呼和自动化邮件上线，将人工联系阈值从2个半月调整到半个月</div>
+                        <div class="achievement-item">在团队内推广VoIP使用，<span class="exp-highlight">使用率从 5% 提升至 60%</span></div>
+                        <div class="achievement-item"><span class="exp-highlight">电话接通率从 23% 提升至 28%，单月节省人力成本约 4 万元</span></div>
+                    </div>
                 </div>
-                <div class="project-achievements">
-                    <div class="achievement-item">推动自动化外呼和自动化邮件上线，将人工联系阈值从2个半月调整到半个月</div>
-                    <div class="achievement-item">在团队内推广VoIP使用，<span class="exp-highlight">使用率从 5% 提升至 60%</span></div>
-                    <div class="achievement-item"><span class="exp-highlight">电话接通率从 23% 提升至 28%，单月节省人力成本约 4 万元</span></div>
-                </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-title">供应商服务流程标准化与效率提升项目</div>
-                <div class="project-role">项目负责人</div>
-                <div class="project-period">2025.01 - 2025.05</div>
-                <div class="project-bg">
-                    <strong>项目背景：</strong>Trip.com无证件机票订单占比70%，但因供应商仍索要冗余证件而暂缓出票，造成商户人力浪费与客诉率上升。
-                </div>
-                <div class="project-achievements">
-                    <div class="achievement-item">从数据中提取关键字自建字段，精准提取无证件预定暂缓单据</div>
-                    <div class="achievement-item">列举Top问题供应商，在业务沟通会议上同步供应商明细，推动合规执行</div>
-                    <div class="achievement-item"><span class="exp-highlight">供应商因证件问题暂缓出票量月减 80%</span>，建立"数据监控-跨部门同步-流程标准化"闭环</div>
+                <div class="project-card" data-type="project" data-index="2">
+                    <div class="project-title">供应商服务流程标准化与效率提升项目</div>
+                    <div class="project-role">项目负责人</div>
+                    <div class="project-period">2025.01 - 2025.05</div>
+                    <div class="project-bg">
+                        <strong>项目背景：</strong>Trip.com无证件机票订单占比70%，但因供应商仍索要冗余证件而暂缓出票，造成商户人力浪费与客诉率上升。
+                    </div>
+                    <div class="project-achievements">
+                        <div class="achievement-item">从数据中提取关键字自建字段，精准提取无证件预定暂缓单据</div>
+                        <div class="achievement-item">列举Top问题供应商，在业务沟通会议上同步供应商明细，推动合规执行</div>
+                        <div class="achievement-item"><span class="exp-highlight">供应商因证件问题暂缓出票量月减 80%</span>，建立"数据监控-跨部门同步-流程标准化"闭环</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1038,6 +1101,18 @@
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         </button>
+        <div class="preview-nav">
+            <button class="preview-nav-btn" id="previewPrev" aria-label="上一个">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button class="preview-nav-btn" id="previewNext" aria-label="下一个">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
         <div class="preview-content" id="previewContent">
             <!-- Preview content will be dynamically inserted here -->
         </div>
@@ -1048,10 +1123,16 @@
         const previewModal = document.getElementById('previewModal');
         const previewContent = document.getElementById('previewContent');
         const previewClose = document.getElementById('previewClose');
+        const previewPrev = document.getElementById('previewPrev');
+        const previewNext = document.getElementById('previewNext');
+        
+        // 当前预览的类型和索引
+        let currentPreviewType = '';
+        let currentPreviewIndex = 0;
 
         // Experience data
-        const experienceData = {
-            exp1: {
+        const experienceData = [
+            {
                 type: 'experience',
                 company: '平安健康互联网股份有限公司',
                 position: '服务质量部 | 用户体验管理岗',
@@ -1063,7 +1144,7 @@
                     <p><strong>服务团队效率提升：</strong>开展专项培训（如VoIP工具使用、问题应对技巧），强化员工处理能力，<span class="highlight">团队响应时效缩短20%</span>；实现对客服务效率提升25%、人力成本削减18%。</p>
                 `
             },
-            exp2: {
+            {
                 type: 'experience',
                 company: '上海携程国际旅行社有限公司',
                 position: '国际业务部门 - 日本市场机票板块 | 高级知识分析师',
@@ -1080,11 +1161,11 @@
                     <p>• 建立数据监控-跨部门同步-流程标准化闭环</p>
                 `
             }
-        };
+        ];
 
         // Project data
-        const projectData = {
-            project1: {
+        const projectData = [
+            {
                 type: 'project',
                 title: '数据驱动的工单时长赋值与资源合理配置项目',
                 role: '项目负责人',
@@ -1096,7 +1177,7 @@
                     '<span class="highlight">工单处理效率从 17hour/case 优化至 12hour/case，有效解决"忙闲不均"问题，团队单日工单承载量提升 35%</span>'
                 ]
             },
-            project2: {
+            {
                 type: 'project',
                 title: '数据驱动下的服务效率提升与人力成本降低项目',
                 role: '项目负责人',
@@ -1109,7 +1190,7 @@
                     '<span class="highlight">电话接通率从 23% 提升至 28%，单月节省人力成本约 4 万元</span>'
                 ]
             },
-            project3: {
+            {
                 type: 'project',
                 title: '供应商服务流程标准化与效率提升项目',
                 role: '项目负责人',
@@ -1121,7 +1202,7 @@
                     '<span class="highlight">供应商因证件问题暂缓出票量月减 80%</span>，建立"数据监控-跨部门同步-流程标准化"闭环，该模式复用至2个同类服务场景'
                 ]
             }
-        };
+        ];
 
         // Skill data
         const skillData = {
@@ -1145,18 +1226,38 @@
             }
         };
 
+        // 更新切换按钮状态
+        function updateNavButtons() {
+            if (currentPreviewType === 'experience') {
+                previewPrev.disabled = currentPreviewIndex === 0;
+                previewNext.disabled = currentPreviewIndex === experienceData.length - 1;
+            } else if (currentPreviewType === 'project') {
+                previewPrev.disabled = currentPreviewIndex === 0;
+                previewNext.disabled = currentPreviewIndex === projectData.length - 1;
+            } else {
+                previewPrev.disabled = true;
+                previewNext.disabled = true;
+            }
+        }
+
         // Function to show preview
-        function showPreview(data) {
+        function showPreview(type, index) {
+            currentPreviewType = type;
+            currentPreviewIndex = index;
+            
+            let data = {};
             let html = '';
             
-            if (data.type === 'experience') {
+            if (type === 'experience') {
+                data = experienceData[index];
                 html = `
                     <div class="preview-company">${data.company}</div>
                     <div class="preview-position">${data.position}</div>
                     <div class="preview-period">${data.period}</div>
                     <div class="preview-body">${data.content}</div>
                 `;
-            } else if (data.type === 'project') {
+            } else if (type === 'project') {
+                data = projectData[index];
                 html = `
                     <div class="preview-project-title">${data.title}</div>
                     <div class="preview-project-role">${data.role}</div>
@@ -1168,7 +1269,8 @@
                         ).join('')}
                     </div>
                 `;
-            } else if (data.type === 'skill') {
+            } else if (type === 'skill') {
+                data = skillData[index];
                 html = `
                     <div class="preview-skill-name">${data.name}</div>
                     <div class="preview-skill-level">${data.level}</div>
@@ -1179,7 +1281,28 @@
             previewContent.innerHTML = html;
             previewModal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            updateNavButtons();
         }
+
+        // 上一个/下一个切换
+        previewPrev.addEventListener('click', () => {
+            if (currentPreviewIndex > 0) {
+                showPreview(currentPreviewType, currentPreviewIndex - 1);
+            }
+        });
+
+        previewNext.addEventListener('click', () => {
+            let maxIndex = 0;
+            if (currentPreviewType === 'experience') {
+                maxIndex = experienceData.length - 1;
+            } else if (currentPreviewType === 'project') {
+                maxIndex = projectData.length - 1;
+            }
+            
+            if (currentPreviewIndex < maxIndex) {
+                showPreview(currentPreviewType, currentPreviewIndex + 1);
+            }
+        });
 
         // Function to close preview
         function closePreview() {
@@ -1209,28 +1332,26 @@
             item.addEventListener('click', () => {
                 const skillKey = item.getAttribute('data-skill');
                 if (skillData[skillKey]) {
-                    showPreview(skillData[skillKey]);
+                    showPreview('skill', skillKey);
                 }
             });
         });
 
         // Add click handlers to experience items
-        document.querySelectorAll('.experience-item').forEach((item, index) => {
+        document.querySelectorAll('.experience-item').forEach((item) => {
             item.addEventListener('click', () => {
-                const expKey = `exp${index + 1}`;
-                if (experienceData[expKey]) {
-                    showPreview(experienceData[expKey]);
-                }
+                const type = item.getAttribute('data-type');
+                const index = parseInt(item.getAttribute('data-index'));
+                showPreview(type, index);
             });
         });
 
         // Add click handlers to project cards
-        document.querySelectorAll('.project-card').forEach((item, index) => {
+        document.querySelectorAll('.project-card').forEach((item) => {
             item.addEventListener('click', () => {
-                const projectKey = `project${index + 1}`;
-                if (projectData[projectKey]) {
-                    showPreview(projectData[projectKey]);
-                }
+                const type = item.getAttribute('data-type');
+                const index = parseInt(item.getAttribute('data-index'));
+                showPreview(type, index);
             });
         });
 
