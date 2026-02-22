@@ -5,111 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>陈江浩 - 简历</title>
     <style>
-        /* 基础样式重置 */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
         :root {
             --bg-primary: #000000;
-            --bg-secondary: #1d1d1f;
+            --bg-secondary: #161617;
             --text-primary: #f5f5f7;
-            --text-secondary: #86868b;
-            --accent-blue: #2997ff;
+            --text-secondary: #a1a1a6;
+            --accent-blue: #0071e3;
             --card-bg: #1c1c1e;
-            --border-color: #38383a;
-            --transition-smooth: all 0.3s ease;
+            --border-color: #333336;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
 
         /* 导航栏 */
         .navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed; top: 0; width: 100%; height: 48px;
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000; border-bottom: 0.5px solid var(--border-color);
         }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 100%; font-size: 12px; }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover { color: #fff; }
 
-        .nav-container { height: 52px; display: flex; align-items: center; justify-content: space-between; }
-        .nav-logo { font-weight: 600; font-size: 17px; }
-        .nav-menu { display: flex; gap: 24px; list-style: none; }
-        .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 13px; transition: 0.3s; }
-        .nav-link:hover { color: var(--text-primary); }
-
-        /* 顶部个人信息 */
-        .hero { padding: 100px 0 40px; text-align: center; }
+        /* Hero Section */
+        .hero { padding: 90px 0 40px; text-align: center; }
         .hero-avatar {
-            width: 120px; height: 120px; border-radius: 50%;
-            margin: 0 auto 20px; border: 2px solid var(--border-color);
-            overflow: hidden; 
-            background-color: var(--bg-secondary);
-            display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 12px;
+            width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 20px;
+            border: 1px solid var(--border-color); overflow: hidden; background: #222;
         }
         .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
-        .hero-name { font-size: 40px; font-weight: 700; margin-bottom: 8px; }
-        .hero-title { color: var(--accent-blue); font-size: 18px; font-weight: 500; margin-bottom: 20px; }
-        
-        .contact-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
-        .contact-item { font-size: 14px; color: var(--text-secondary); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+        .hero-name { font-size: 40px; font-weight: 600; letter-spacing: -0.5px; }
+        .hero-title { color: var(--accent-blue); font-size: 19px; margin: 8px 0 20px; }
+        .contact-info { display: flex; justify-content: center; gap: 20px; font-size: 14px; color: var(--text-secondary); }
 
-        /* 模块标题与卡片 */
-        .section-title { font-size: 24px; margin: 50px 0 20px; text-align: left; border-left: 3px solid var(--accent-blue); padding-left: 12px; font-weight: 600;}
+        /* 模块标题 */
+        .section-title { font-size: 24px; font-weight: 600; margin: 60px 0 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
+
+        /* 自我评价美化版 */
+        .eval-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+        .eval-item { background: var(--bg-secondary); padding: 20px; border-radius: 14px; border: 1px solid var(--border-color); }
+        .eval-item h4 { color: var(--accent-blue); font-size: 14px; margin-bottom: 10px; }
+        .eval-item p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+        .eval-footer { background: rgba(0, 113, 227, 0.05); padding: 20px; border-radius: 14px; border: 1px solid rgba(0, 113, 227, 0.2); margin-top: 15px; font-size: 14px; }
+
+        /* 卡片列表 */
         .card {
-            background: var(--card-bg); border-radius: 16px; padding: 24px 30px;
-            margin-bottom: 16px; border: 1px solid var(--border-color);
-            transition: var(--transition-smooth); cursor: pointer; position: relative;
+            background: var(--bg-secondary); border-radius: 16px; padding: 24px; margin-bottom: 16px;
+            border: 1px solid var(--border-color); cursor: pointer; transition: all 0.3s ease; position: relative;
         }
-        .card:hover { border-color: var(--accent-blue); transform: translateY(-2px); }
-        .card::after { content: "点击查看完整描述 →"; position: absolute; bottom: 24px; right: 30px; font-size: 13px; color: var(--accent-blue); opacity: 0.8; }
+        .card:hover { border-color: var(--accent-blue); transform: scale(1.01); }
+        .card-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .card-name { font-size: 18px; font-weight: 600; }
+        .card-tag { font-size: 12px; color: var(--text-secondary); }
+        .card-link { color: var(--accent-blue); font-size: 13px; margin-top: 12px; display: inline-block; }
 
-        /* 自我评价卡片（不可点击） */
-        .card.no-click { cursor: default; }
-        .card.no-click:hover { transform: none; border-color: var(--border-color); }
-        .card.no-click::after { display: none; }
-
-        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
-        .exp-company { font-size: 18px; font-weight: 600; color: var(--text-primary); }
-        .exp-period { font-size: 14px; color: var(--text-secondary); }
-
-        /* 浮窗样式 */
+        /* 浮窗 (Modal) */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); z-index: 2000; align-items: center; justify-content: center;
-            padding: 20px; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.9); z-index: 2000; align-items: center; justify-content: center;
         }
         .modal.active { display: flex; }
         .modal-content {
-            background: var(--bg-secondary); width: 100%; max-width: 700px;
-            max-height: 85vh; border-radius: 20px; padding: 40px;
-            position: relative; overflow-y: auto; border: 1px solid var(--border-color);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            background: var(--card-bg); width: 95%; max-width: 750px; height: 80vh;
+            border-radius: 24px; position: relative; display: flex; flex-direction: column;
+            border: 1px solid var(--border-color); animation: slideUp 0.4s ease;
         }
-        .close-btn { position: absolute; top: 24px; right: 24px; font-size: 28px; color: var(--text-secondary); cursor: pointer; line-height: 1; transition: 0.2s;}
-        .close-btn:hover { color: #fff; }
-        .modal-body { color: var(--text-primary); line-height: 1.8; }
-        .modal-body h3 { font-size: 20px; margin-bottom: 20px; color: var(--accent-blue); padding-bottom: 10px; border-bottom: 1px solid var(--border-color);}
-        .modal-body p { margin-bottom: 12px; font-size: 15px; color: var(--text-primary); text-align: justify; }
-        .modal-body strong { color: #fff; }
-        .modal-body ul { list-style: none; margin-bottom: 20px; }
-        .modal-body li { margin-bottom: 12px; position: relative; padding-left: 18px; color: var(--text-primary); font-size: 15px; }
-        .modal-body li::before { content: "•"; position: absolute; left: 0; color: var(--accent-blue); font-weight: bold;}
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .modal-header { padding: 30px 40px 10px; display: flex; justify-content: space-between; }
+        .modal-body { padding: 0 40px 40px; overflow-y: auto; flex: 1; line-height: 1.8; }
+        .modal-body h3 { font-size: 24px; margin-bottom: 20px; color: var(--accent-blue); }
+        .modal-body ul { list-style: none; margin: 15px 0; }
+        .modal-body li { margin-bottom: 10px; padding-left: 20px; position: relative; color: var(--text-secondary); }
+        .modal-body li::before { content: "•"; position: absolute; left: 0; color: var(--accent-blue); font-weight: bold; }
+        
+        /* 导航按钮 */
+        .modal-nav {
+            position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between;
+            padding: 0 10px; pointer-events: none;
+        }
+        .nav-btn {
+            width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            pointer-events: auto; transition: 0.3s; color: #fff; border: none; font-size: 20px;
+        }
+        .nav-btn:hover { background: var(--accent-blue); }
+        .close-btn { font-size: 28px; cursor: pointer; color: var(--text-secondary); border:none; background:none; }
 
         @media (max-width: 768px) {
-            .nav-menu { display: none; }
-            .card { padding: 20px; }
-            .card::after { position: static; display: block; margin-top: 15px; text-align: right; }
-            .modal-content { padding: 30px 20px; }
-            .exp-header { flex-direction: column; gap: 4px;}
+            .eval-grid { grid-template-columns: 1fr; }
+            .modal-content { height: 90vh; }
+            .modal-body { padding: 0 20px 30px; }
+            .modal-nav { bottom: 20px; top: auto; width: 100%; justify-content: center; gap: 40px; padding-bottom: 10px; }
         }
     </style>
 </head>
@@ -117,12 +114,11 @@
 
     <nav class="navbar">
         <div class="nav-container container">
-            <div class="nav-logo">陈江浩 | 简历</div>
-            <ul class="nav-menu">
-                <li><a href="#evaluation" class="nav-link">自我评价</a></li>
-                <li><a href="#experience" class="nav-link">工作经历</a></li>
-                <li><a href="#projects" class="nav-link">项目经历</a></li>
-                <li><a href="#education" class="nav-link">教育背景</a></li>
+            <div style="font-weight: 600;">陈江浩</div>
+            <ul class="nav-links">
+                <li><a href="#evaluation">自我评价</a></li>
+                <li><a href="#experience">工作经历</a></li>
+                <li><a href="#projects">项目经历</a></li>
             </ul>
         </div>
     </nav>
@@ -130,170 +126,207 @@
     <main class="container">
         <section class="hero">
             <div class="hero-avatar">
-                <img src="IMG_3016.JPG" alt="陈江浩照片" onerror="this.style.display='none'; this.parentNode.innerHTML='照片加载失败<br>请检查文件名'">
+                <img src="IMG_3016.JPG" alt="头像" onerror="this.src='https://via.placeholder.com/110/222/fff?text=Photo'">
             </div>
             <h1 class="hero-name">陈江浩</h1>
             <p class="hero-title">策略运营 / 服务中台运营</p>
             <div class="contact-info">
-                <span class="contact-item">📞 13262776097</span>
-                <span class="contact-item">📧 kousuke7197@163.com</span>
-                <span class="contact-item">📍 上海</span>
+                <span>📞 13262776097</span>
+                <span>📧 kousuke7197@163.com</span>
+                <span>📍 上海</span>
             </div>
         </section>
 
         <section id="evaluation">
             <h2 class="section-title">自我评价</h2>
-            <div class="card no-click">
-                <p style="font-size: 15px; line-height: 1.8; color: var(--text-primary); white-space: pre-line;">
-                    具备3年+服务运营与数据驱动经验，核心能力覆盖“数据拆解-流程优化-跨部门协同”：
-                    • <strong>数据端：</strong>精通SQL/Excel，能独立完成业务数据集拆解、指标计算与可视化报表输出；
-                    • <strong>业务端：</strong>主导过工单智能分配、用户体验优化等项目，实现效率提升29%、人力成本降18%、核心业务NPS升5%；
-                    • <strong>工具端：</strong>擅长用AI工具（Gemini/GPT）辅助提效，可快速生成数据处理逻辑、优化工作流程。具备“业务痛点定位+落地执行”能力，适配互联网/科技行业的服务效能、资源优化类岗位。
-                    因个人职业规划聚焦‘数据+AI驱动的运营场景’，当前岗位在数据权限开放、前沿工具应用上与长期方向匹配度不足，故寻求更契合的发展平台。
-                </p>
+            <div class="eval-grid">
+                <div class="eval-item">
+                    <h4>数据驱动</h4>
+                    <p>精通SQL/Excel，独立完成业务数据集拆解、指标计算与可视化 [cite: 60]。</p>
+                </div>
+                <div class="eval-item">
+                    <h4>业务提效</h4>
+                    <p>主导智能分配与体验优化，效能提升29%，NPS升5% [cite: 61, 62]。</p>
+                </div>
+                <div class="eval-item">
+                    <h4>AI 提效</h4>
+                    <p>擅长用AI工具辅助复杂逻辑生成与流程优化，具备极强执行力 [cite: 63, 64]。</p>
+                </div>
+            </div>
+            <div class="eval-footer">
+                聚焦“数据+AI驱动的运营场景”，适配互联网/科技行业的服务效能与资源优化岗位。具备“业务痛点定位+落地执行”能力 [cite: 65, 66]。
             </div>
         </section>
 
         <section id="experience">
             <h2 class="section-title">工作经历</h2>
-            
-            <div class="card" onclick="openModal('exp_pingan')">
-                <div class="exp-header">
-                    <div class="exp-company">平安健康互联网股份有限公司</div>
-                    <span class="exp-period">2026.01 - 至今</span>
+            <div class="card" onclick="openModal(0)">
+                <div class="card-header">
+                    <span class="card-name">平安健康互联网股份有限公司</span>
+                    <span class="card-tag">2026.01 - 至今</span>
                 </div>
-                <p style="color:var(--text-secondary); font-size: 14px; margin-bottom: 8px;">服务质量部 | 用户体验管理岗</p>
+                <p style="color:var(--text-secondary); font-size:14px;">用户体验管理岗 | 核心业务 NPS 提升 5% [cite: 18, 19, 21]</p>
+                <span class="card-link">查看完整描述 →</span>
             </div>
-
-            <div class="card" onclick="openModal('exp_ctrip')">
-                <div class="exp-header">
-                    <div class="exp-company">上海携程国际旅行社有限公司</div>
-                    <span class="exp-period">2022.05 - 2025.12</span>
+            <div class="card" onclick="openModal(1)">
+                <div class="card-header">
+                    <span class="card-name">上海携程国际旅行社有限公司</span>
+                    <span class="card-tag">2022.05 - 2025.12</span>
                 </div>
-                <p style="color:var(--text-secondary); font-size: 14px; margin-bottom: 8px;">国际业务部门-日本市场机票板块 | 高级知识分析师</p>
+                <p style="color:var(--text-secondary); font-size:14px;">高级知识分析师 | 服务效率提升 25% [cite: 29, 30, 31, 34]</p>
+                <span class="card-link">查看完整描述 →</span>
             </div>
         </section>
 
         <section id="projects">
             <h2 class="section-title">项目经历</h2>
-            <div class="card" onclick="openModal('proj_1')">
-                <div class="exp-header">
-                    <div class="exp-company">数据驱动的工单时长赋值与资源合理配置项目</div>
-                    <span class="exp-period">2025.01 - 2025.06</span>
+            <div class="card" onclick="openModal(2)">
+                <div class="card-header">
+                    <span class="card-name">工单时长赋值与资源配置项目</span>
+                    <span class="card-tag">2025.01 - 2025.06</span>
                 </div>
-                <p style="color:var(--text-secondary); font-size: 14px; margin-bottom: 8px;">项目角色：项目负责人</p>
+                <p style="color:var(--text-secondary); font-size:14px;">处理效率从 17h 优化至 12h/case [cite: 40, 45]</p>
+                <span class="card-link">查看完整描述 →</span>
             </div>
-
-            <div class="card" onclick="openModal('proj_2')">
-                <div class="exp-header">
-                    <div class="exp-company">数据驱动下的服务效率提升与人力成本降低项目</div>
-                    <span class="exp-period">2025.01 - 2025.05</span>
+            <div class="card" onclick="openModal(3)">
+                <div class="card-header">
+                    <span class="card-name">服务效率提升与人力成本降低项目</span>
+                    <span class="card-tag">2025.01 - 2025.05</span>
                 </div>
-                <p style="color:var(--text-secondary); font-size: 14px; margin-bottom: 8px;">项目角色：项目负责人</p>
+                <p style="color:var(--text-secondary); font-size:14px;">Voip 使用率升至 60%，月省人力成本 4万 [cite: 46, 51, 52]</p>
+                <span class="card-link">查看完整描述 →</span>
             </div>
-
-            <div class="card" onclick="openModal('proj_3')">
-                <div class="exp-header">
-                    <div class="exp-company">供应商服务流程标准化与效率提升项目</div>
-                    <span class="exp-period">2025.01 - 2025.05</span>
+            <div class="card" onclick="openModal(4)">
+                <div class="card-header">
+                    <span class="card-name">供应商服务流程标准化项目</span>
+                    <span class="card-tag">2025.01 - 2025.05</span>
                 </div>
-                <p style="color:var(--text-secondary); font-size: 14px; margin-bottom: 8px;">项目角色：项目负责人</p>
-            </div>
-        </section>
-
-        <section id="education" style="margin-bottom: 80px;">
-            <h2 class="section-title">教育背景</h2>
-            <div class="card no-click">
-                <div class="exp-header">
-                    <div class="exp-company">早稻田大学</div>
-                    <span class="exp-period">2018.04 - 2022.03</span>
-                </div>
-                <p style="color:var(--text-primary); font-size: 15px; margin-bottom: 8px;">英语语言文学 | 本科</p>
-                <p style="color:var(--accent-blue); font-size: 14px;">资格证书：日语 N1 (2021.12 获得)</p>
+                <p style="color:var(--text-secondary); font-size:14px;">因证件问题导致的暂缓出票量月减 80% [cite: 53, 57]</p>
+                <span class="card-link">查看完整描述 →</span>
             </div>
         </section>
+
+        <div style="height: 100px;"></div>
     </main>
 
-    <div class="modal" id="detailModal" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div id="modalBody" class="modal-body">
-                </div>
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="modalCategory" style="font-size:12px; color:var(--accent-blue); font-weight:600;">DETAIL</span>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody" class="modal-body"></div>
+            
+            <div class="modal-nav">
+                <button class="nav-btn" onclick="prevItem()">‹</button>
+                <button class="nav-btn" onclick="nextItem()">›</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // 完全按照 PDF 原文配置的数据字典
-        const data = {
-            exp_pingan: {
+        const resumeData = [
+            {
                 title: "平安健康互联网股份有限公司",
-                content: \`
-                    <p style="color: var(--text-secondary); margin-bottom: 20px;">服务质量部 | 用户体验管理岗 <span style="float:right;">2026-01 至今</span></p>
+                period: "2026.01 - 至今",
+                cat: "工作经历",
+                content: `
+                    <p><strong>岗位：</strong>用户体验管理岗 [cite: 18]</p>
                     <p>聚焦全渠道用户体验优化，以“用户声音-业务推动”为核心链路开展工作：</p>
                     <ul>
-                        <li><strong>需求侧：</strong>统筹调研问卷、NPS反馈等全渠道用户声音收集，通过内部智能文档（飞书多维表格同源工具）完成数据整理、可视化看板输出，沉淀体检/健康商城/护工服务等核心业务的体验痛点；</li>
-                        <li><strong>供给侧：</strong>联动业务方推动优化落地（如服务策略迭代、供应商资源覆盖率提升、产品功能调整），累计跟进12个体验优化项目，核心业务NPS提升5%。</li>
-                    </ul>
-                \`
+                        <li><strong>需求侧：</strong>统筹调研问卷、NPS反馈等全渠道用户声音收集，通过内部智能文档完成数据整理、可视化看板输出，沉淀体检/健康商城/护工服务等核心业务的体验痛点 [cite: 20]。</li>
+                        <li><strong>供给侧：</strong>联动业务方推动优化落地（如服务策略迭代、供应商资源覆盖率提升、产品功能调整），累计跟进12个体验优化项目，核心业务NPS提升 5% [cite: 21]。</li>
+                    </ul>`
             },
-            exp_ctrip: {
+            {
                 title: "上海携程国际旅行社有限公司",
-                content: \`
-                    <p style="color: var(--text-secondary); margin-bottom: 20px;">国际业务部门-日本市场机票板块 | 高级知识分析师 <span style="float:right;">2022-05 至 2025-12</span></p>
-                    <p>聚焦服务团队痛点，以数据拆解+流程梳理能力，定位供应商出票不规范、外呼策略低效等核心问题：</p>
+                period: "2022.05 - 2025.12",
+                cat: "工作经历",
+                content: `
+                    <p><strong>岗位：</strong>高级知识分析师 [cite: 30]</p>
+                    <p>聚焦服务团队痛点，以数据拆解+流程梳理能力，定位供应商出票不规范、外呼策略低效等核心问题 [cite: 33]：</p>
                     <ul>
-                        <li><strong>对外：</strong>联动产品/业务端推动优化（如上线时段接通率数据看板、规范供应商出票流程），实现对客服务效率提升25%、人力成本削减18%；</li>
-                        <li><strong>对内：</strong>开展专项培训（如VoIP工具使用、问题应对技巧），强化员工处理能力，团队响应时效缩短20%。</li>
+                        <li><strong>对外：</strong>联动产品/业务端推动优化（如上线时段接通率数据看板、规范供应商出票流程），实现对客服务效率提升25%、人力成本削减18% [cite: 34]。</li>
+                        <li><strong>对内：</strong>开展专项培训（如VoIP工具使用、问题应对技巧），强化员工处理能力，团队响应时效缩短20% [cite: 35]。</li>
+                    </ul>`
+            },
+            {
+                title: "数据驱动的工单时长赋值与资源配置项目",
+                period: "2025.01 - 2025.06",
+                cat: "重点项目",
+                content: `
+                    <p><strong>项目背景：</strong>因员工能力差异导致工单处理效率不同，而分配系统未实现智能化分配，出现“忙闲不均”，旨在优化分配机制 [cite: 41]。</p>
+                    <p><strong>核心行动：</strong></p>
+                    <ul>
+                        <li>推动工单分配模式变革，从传统排队分配转变为依据个人处理上限分配的智能化模式 [cite: 43]。</li>
+                        <li>取数分析各类工单类型，结合领班经验，为每个业务类型合理赋值 [cite: 44]。</li>
                     </ul>
-                \`
+                    <p><strong>成果：</strong>处理效率从 17h/case 优化至 12h/case，单日工单承载量提升 35% [cite: 45]。</p>`
             },
-            proj_1: {
-                title: "数据驱动的工单时长赋值与资源合理配置项目",
-                content: \`
-                    <p style="color: var(--text-secondary); margin-bottom: 20px;">项目负责人 <span style="float:right;">2025-01 至 2025-06</span></p>
-                    <p><strong>项目背景与目标：</strong>因员工能力差异导致工单处理效率不同，而工单分配系统未实现“能者多分”的智能化分配，出现“忙闲不均”现象，旨在优化工单分配机制，提升整体处理效率。</p>
-                    <p><strong>核心职责与行动：</strong></p>
-                    <p>推动工单分配模式变革，从传统排队分配转变为依据个人处理上限分配的智能化模式，实现资源合理调配。</p>
-                    <p>取数分析各类工单类型，结合领班经验，为每个业务类型合理赋值，确保分配标准科学可行。</p>
-                    <p><strong>项目成果：</strong>工单处理效率大幅提升，从17hour/case 优化至12hour/case，有效解决“忙闲不均”问题，团队单日工单承载量提升35%。</p>
-                \`
+            {
+                title: "服务效率提升与人力成本降低项目",
+                period: "2025.01 - 2025.05",
+                cat: "重点项目",
+                content: `
+                    <p><strong>项目背景：</strong>针对日本市场航班变动场景，原人工联系方式消耗大量人力，旨在通过自动化工具优化流程 [cite: 47]。</p>
+                    <p><strong>核心行动：</strong></p>
+                    <ul>
+                        <li>取数对比每隔15天联系上客人的比例及 Voip 电话接通率，提供数据支撑 [cite: 49]。</li>
+                        <li>推动自动化外呼和邮件上线，人工联系阈值时长从2个半月调整到半个月 [cite: 50]。</li>
+                        <li>推广监督 Voip 使用率，将其从 5% 提升至 60% [cite: 51, 52]。</li>
+                    </ul>
+                    <p><strong>成果：</strong>电话接通率提升至 28%，单月节省人力成本约 4 万元 [cite: 52]。</p>`
             },
-            proj_2: {
-                title: "数据驱动下的服务效率提升与人力成本降低项目",
-                content: \`
-                    <p style="color: var(--text-secondary); margin-bottom: 20px;">项目负责人 <span style="float:right;">2025-01 至 2025-05</span></p>
-                    <p><strong>项目背景与目标：</strong>针对日本市场航班变动场景，需从旅行社单向联系客人通知信息，因联系不上客人严重消耗人力，旨在通过优化联系方式与流程减少人力成本。</p>
-                    <p><strong>核心职责与行动：</strong></p>
-                    <p>取数对比起飞前2个半月内每隔15天联系上客人的比例，同时对比 Voip 电话和普通电话接通率，为后续优化提供数据支撑。</p>
-                    <p>推动自动化外呼和自动化邮件上线，将人工联系的阈值时长从2个半月调整到半个月，减少人工介入范围。</p>
-                    <p>在团队内推广并监督 Voip 的使用率，成功将Voip 使用率从5%提升至60%，提升联系效率。</p>
-                    <p><strong>项目成果：</strong>3000-4000单（降幅约60%），电话接通率从23%提升至28%，单月节省人力成本约4万元。</p>
-                \`
-            },
-            proj_3: {
+            {
                 title: "供应商服务流程标准化与效率提升项目",
-                content: \`
-                    <p style="color: var(--text-secondary); margin-bottom: 20px;">项目负责人 <span style="float:right;">2025-01 至 2025-05</span></p>
-                    <p><strong>项目背景与目标：</strong>Trip.com无证件机票订单占比70%，但2025年前2个月有200个 case 因产品已打“无证件预定”标签，供应商仍索要冗余证件而暂缓出票，造成商户人力浪费与客诉率上升，目标从流程合规性层面解决对商服务痛点。</p>
-                    <p><strong>核心职责与行动：</strong></p>
-                    <p>从数据中提取关键字自建字段，精准提取无证件预定暂缓单据的数据，明确问题核心。</p>
-                    <p>列举 Top 问题供应商，在业务沟通会议上同步供应商明细，向供应商推送业务规范要求，推动合规执行。</p>
-                    <p><strong>项目成果：</strong>供应商因证件问题暂缓出票量月减80%，建立“数据监控-跨部门同步-流程标准化”闭环，该模式复用至2个同类服务场景。</p>
-                \`
+                period: "2025.01 - 2025.05",
+                cat: "重点项目",
+                content: `
+                    <p><strong>项目背景：</strong>解决 Trip.com 供应商在无证件机票预定场景下冗余索要证件导致的商户人力浪费与客诉 [cite: 53]。</p>
+                    <p><strong>核心行动：</strong></p>
+                    <ul>
+                        <li>从数据中提取关键字自建字段，精准提取无证件预定暂缓单据数据 [cite: 55]。</li>
+                        <li>列举 Top 问题供应商，在会议上同步明细，推动合规执行 [cite: 56]。</li>
+                    </ul>
+                    <p><strong>成果：</strong>证件问题暂缓出票量月减 80%，建立并复用“监控-同步-标准化”闭环 [cite: 57]。</p>`
             }
-        };
+        ];
 
-        function openModal(id) {
-            const item = data[id];
-            document.getElementById('modalBody').innerHTML = \`<h3>\${item.title}</h3>\${item.content}\`;
+        let currentIndex = 0;
+
+        function openModal(index) {
+            currentIndex = index;
+            updateModalContent();
             document.getElementById('detailModal').classList.add('active');
-            document.body.style.overflow = 'hidden'; // 阻止底层滚动
+            document.body.style.overflow = 'hidden';
         }
 
-        function closeModal(e) {
+        function closeModal() {
             document.getElementById('detailModal').classList.remove('active');
-            document.body.style.overflow = 'auto'; // 恢复底层滚动
+            document.body.style.overflow = 'auto';
         }
+
+        function updateModalContent() {
+            const item = resumeData[currentIndex];
+            document.getElementById('modalCategory').innerText = item.cat + ' | ' + item.period;
+            document.getElementById('modalBody').innerHTML = `<h3>${item.title}</h3>${item.content}`;
+            document.getElementById('modalBody').scrollTop = 0;
+        }
+
+        function nextItem() {
+            currentIndex = (currentIndex + 1) % resumeData.length;
+            updateModalContent();
+        }
+
+        function prevItem() {
+            currentIndex = (currentIndex - 1 + resumeData.length) % resumeData.length;
+            updateModalContent();
+        }
+
+        // 点击背景关闭
+        document.getElementById('detailModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
     </script>
 </body>
 </html>
