@@ -2,331 +2,1243 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>陈江浩 - 简历</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈江浩 | Portfolio</title>
     <style>
-        /* 全局样式 */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --bg-primary: #000000;
-            --bg-secondary: #161617;
-            --text-primary: #f5f5f7;
-            --text-secondary: #a1a1a6;
-            --accent-blue: #0071e3;
-            --card-bg: #1c1c1e;
-            --border-color: #333336;
+            --bg-card: #1a1a1a;
+            --bg-card-hover: #222222;
+            --text-primary: #ffffff;
+            --text-secondary: #999999;
+            --text-tertiary: #666666;
+            --accent-blue: #2997ff;
+            --accent-blue-light: #4da3ff;
+            --border-color: #333333;
+            --transition-fast: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
 
-        /* 导航栏 */
+        /* Navigation */
         .navbar {
-            position: fixed; top: 0; width: 100%; height: 48px;
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: saturate(180%) blur(20px);
-            z-index: 1000; border-bottom: 0.5px solid var(--border-color);
-        }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 100%; font-size: 12px; }
-        .nav-links { display: flex; gap: 20px; list-style: none; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; transition: 0.3s; }
-        .nav-links a:hover { color: #fff; }
-
-        /* 顶部信息 */
-        .hero { padding: 90px 0 40px; text-align: center; }
-        .hero-avatar {
-            width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 20px;
-            border: 1px solid var(--border-color); overflow: hidden; background: #222;
-        }
-        .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
-        .hero-name { font-size: 36px; font-weight: 600; }
-        .hero-title { color: var(--accent-blue); font-size: 18px; margin: 8px 0 20px; font-weight: 500;}
-        .contact-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; font-size: 13px; color: var(--text-secondary); }
-
-        .section-title { font-size: 22px; font-weight: 600; margin: 50px 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
-
-        /* 自我评价美化 */
-        .eval-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 15px; }
-        .eval-item { background: var(--bg-secondary); padding: 18px; border-radius: 12px; border: 1px solid var(--border-color); }
-        .eval-item h4 { color: var(--accent-blue); font-size: 14px; margin-bottom: 8px; }
-        .eval-item p { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
-        .eval-summary { 
-            background: linear-gradient(135deg, rgba(0,113,227,0.1) 0%, rgba(0,0,0,0) 100%);
-            padding: 18px; border-radius: 12px; border: 1px solid rgba(0, 113, 227, 0.3); font-size: 13px; line-height: 1.7;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        /* 经历卡片样式 */
-        .card {
-            background: var(--bg-secondary); border-radius: 16px; padding: 20px; margin-bottom: 12px;
-            border: 1px solid var(--border-color); cursor: pointer; transition: 0.3s; position: relative;
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .card:hover { border-color: var(--accent-blue); transform: translateY(-2px); }
-        .card-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
-        .card-name { font-size: 16px; font-weight: 600; }
-        .card-date { font-size: 12px; color: var(--text-secondary); }
-        .card-sub { font-size: 13px; color: var(--text-secondary); }
-        .card-more { color: var(--accent-blue); font-size: 12px; margin-top: 10px; display: block; font-weight: 500; }
 
-        /* 浮窗 (Modal) */
+        .nav-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: var(--transition-fast);
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        .nav-link.active {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 140px 40px 60px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            margin: 0 auto 40px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .title {
+            font-size: 18px;
+            color: var(--accent-blue);
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            transition: var(--transition-fast);
+        }
+
+        .contact-item:hover {
+            color: var(--text-primary);
+        }
+
+        .contact-item a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-blue);
+        }
+
+        .education-info {
+            margin-top: 32px;
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .education-item {
+            color: var(--text-tertiary);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .education-item::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        /* Section */
+        section {
+            padding: 80px 40px;
+            min-height: auto;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Skills Cards */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .skill-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(41, 151, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--accent-blue);
+        }
+
+        .skill-content {
+            flex: 1;
+        }
+
+        .skill-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .skill-level {
+            font-size: 12px;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .skill-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Experience Cards - Minimal */
+        .experience-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .experience-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .experience-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .exp-main {
+            flex: 1;
+        }
+
+        .exp-company {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .exp-position {
+            font-size: 14px;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+        }
+
+        .exp-highlight {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .exp-period {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            padding: 8px 16px;
+            background: var(--bg-primary);
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* View More Link */
+        .view-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-blue);
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 12px;
+            transition: var(--transition-fast);
+        }
+
+        .view-more:hover {
+            color: var(--accent-blue-light);
+        }
+
+        .view-more svg {
+            width: 16px;
+            height: 16px;
+            transition: var(--transition-fast);
+        }
+
+        .view-more:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Self Evaluation */
+        .evaluation-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+        }
+
+        .evaluation-text {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        .evaluation-text p {
+            margin-bottom: 16px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer p {
+            color: var(--text-tertiary);
+            font-size: 13px;
+        }
+
+        /* Modal */
         .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9); z-index: 2000; align-items: center; justify-content: center;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
         }
-        .modal.active { display: flex; }
-        .modal-content {
-            background: var(--card-bg); width: 92%; max-width: 680px; height: 75vh;
-            border-radius: 20px; position: relative; display: flex; flex-direction: column;
-            border: 1px solid var(--border-color); animation: fadeIn 0.3s ease;
-        }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        
-        .modal-header { padding: 25px 30px 10px; display: flex; justify-content: space-between; align-items: center;}
-        .modal-body { padding: 0 30px 40px; overflow-y: auto; flex: 1; line-height: 1.8; }
-        .modal-body h3 { font-size: 20px; margin-bottom: 15px; color: var(--accent-blue); border-bottom: 1px solid var(--border-color); padding-bottom: 10px;}
-        .modal-body p { margin-bottom: 12px; font-size: 14px; }
-        .modal-body ul { list-style: none; margin: 10px 0; }
-        .modal-body li { margin-bottom: 8px; padding-left: 18px; position: relative; color: var(--text-primary); font-size: 14px; }
-        .modal-body li::before { content: "•"; position: absolute; left: 0; color: var(--accent-blue); font-weight: bold; }
-        
-        .nav-ctrl {
-            display: flex; gap: 15px;
-        }
-        .ctrl-btn {
-            width: 36px; height: 36px; background: #333; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; cursor: pointer;
-            color: #fff; border: none; font-size: 18px; transition: 0.2s;
-        }
-        .ctrl-btn:hover { background: var(--accent-blue); }
-        .close-btn { font-size: 24px; cursor: pointer; color: var(--text-secondary); border:none; background:none; }
 
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            max-width: 840px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 48px 60px;
+            position: relative;
+            margin: 0 60px;
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 3px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+            z-index: 20;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .modal-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-primary);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: var(--accent-blue);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+            z-index: 20;
+            box-shadow: 0 4px 12px rgba(41, 151, 255, 0.4);
+        }
+
+        .modal-nav:hover {
+            background: var(--accent-blue-light);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-nav.prev {
+            left: 20px;
+        }
+
+        .modal-nav.next {
+            right: 20px;
+        }
+
+        .modal-nav svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--bg-primary);
+            stroke-width: 2.5;
+        }
+
+        .modal-nav.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: var(--text-tertiary);
+        }
+
+        .modal-nav.disabled:hover {
+            background: var(--text-tertiary);
+            transform: translateY(-50%);
+        }
+
+        .modal-type-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .modal-type-tag.experience {
+            background: rgba(41, 151, 255, 0.15);
+            color: var(--accent-blue);
+        }
+
+        .modal-type-tag.project {
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+        }
+
+        .modal-type-tag.skill {
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ecdc4;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .modal-subtitle {
+            font-size: 16px;
+            color: var(--accent-blue);
+            margin-bottom: 24px;
+        }
+
+        .modal-body {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .modal-body p {
+            margin-bottom: 16px;
+        }
+
+        .modal-body strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .modal-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-body li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .modal-body li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        .highlight {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--border-color);
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background: var(--accent-blue);
+            transition: height 0.1s ease-out;
+            box-shadow: 0 0 10px rgba(41, 151, 255, 0.5);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .eval-grid { grid-template-columns: 1fr; }
-            .hero-name { font-size: 28px; }
-            .modal-content { height: 85vh; width: 95%; }
-            .modal-body { padding: 0 20px 80px; }
-            .bottom-nav { position: absolute; bottom: 20px; width: 100%; display: flex; justify-content: center; gap: 30px; }
+            .container {
+                padding: 0 24px;
+            }
+
+            section {
+                padding: 80px 24px;
+            }
+
+            .hero {
+                padding: 120px 24px 40px;
+            }
+
+            .name {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .experience-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .exp-period {
+                align-self: flex-start;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-tertiary);
+            font-size: 12px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-hint svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Quick Nav */
+        .quick-nav {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(26, 26, 26, 0.5);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .quick-nav-item {
+            padding: 8px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .quick-nav-item:hover {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        .quick-nav-divider {
+            width: 1px;
+            height: 16px;
+            background: var(--border-color);
         }
     </style>
 </head>
 <body>
-
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container container">
-            <div style="font-weight: 600;">陈江浩 | Portfolio</div>
-            <ul class="nav-links">
-                <li><a href="#evaluation">评价</a></li>
-                <li><a href="#experience">经历</a></li>
-                <li><a href="#projects">项目</a></li>
+        <div class="container nav-content">
+            <div class="nav-logo">陈江浩 | 简历</div>
+            <ul class="nav-menu">
+                <li><a href="#skills" class="nav-link">评价</a></li>
+                <li><a href="#experience" class="nav-link">经历</a></li>
+                <li><a href="#projects" class="nav-link">项目</a></li>
             </ul>
         </div>
     </nav>
 
-    <main class="container">
-        <section class="hero">
-            <div class="hero-avatar">
-                <img src="IMG_3016.JPG" alt="头像" onerror="this.parentNode.style.display='flex'; this.parentNode.innerHTML='Photo'">
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="avatar">
+                <img src="https://space-static.coze.site/coze_space/7609609829023239367/upload/id-2.png?sign=1774342387-7063c7aa44-0-15e1d0c365f500d57a5beaee7363282b1033d0b58c954bd3b3f52f682b032166" alt="陈江浩">
             </div>
-            <h1 class="hero-name">陈江浩</h1>
-            <p class="hero-title">策略运营 / 服务中台运营</p>
+            <h1 class="name">陈江浩</h1>
+            <p class="title">策略运营 / 服务中台运营</p>
             <div class="contact-info">
-                <span>📞 13262776097</span>
-                <span>📧 kousuke7197@163.com</span>
-                <span>📍 上海</span>
-            </div>
-        </section>
-
-        <section id="evaluation">
-            <h2 class="section-title">自我评价</h2>
-            <div class="eval-grid">
-                <div class="eval-item">
-                    <h4>📊 数据端</h4>
-                    <p>精通 SQL/Excel，可独立拆解业务数据集，输出可视化报表 [cite: 60]。</p>
+                <div class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    13262776097
                 </div>
-                <div class="eval-item">
-                    <h4>💡 业务端</h4>
-                    <p>主导工单分配优化，效率升29%，核心 NPS 升 5% [cite: 61, 62]。</p>
+                <div class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <a href="mailto:kousuke7197@163.com">kousuke7197@163.com</a>
                 </div>
-                <div class="eval-item">
-                    <h4>🤖 工具端</h4>
-                    <p>擅用 Gemini/GPT 辅助处理复杂逻辑，优化工作流程 [cite: 63, 64]。</p>
+                <div class="contact-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    上海
                 </div>
             </div>
-            <div class="eval-summary">
-                具备“业务痛点定位+落地执行”能力。因职业规划聚焦“数据+AI 驱动运营”，寻求更契合的职业发展平台 [cite: 65, 66]。
+            <div class="education-info">
+                <div class="education-item">早稻田大学 英语语言文学本科</div>
             </div>
-        </section>
-
-        <section id="experience">
-            <h2 class="section-title">工作经历</h2>
-            <div class="card" onclick="openModal(0)">
-                <div class="card-header">
-                    <span class="card-name">平安健康互联网股份有限公司</span>
-                    <span class="card-date">2026.01 - 至今</span>
-                </div>
-                <div class="card-sub">用户体验管理岗 | 服务质量部</div>
-                <span class="card-more">点击查看完整描述 →</span>
+            <div class="quick-nav">
+                <a href="#skills" class="quick-nav-item">自我评价</a>
+                <div class="quick-nav-divider"></div>
+                <a href="#experience" class="quick-nav-item">工作经历</a>
+                <div class="quick-nav-divider"></div>
+                <a href="#projects" class="quick-nav-item">项目经历</a>
             </div>
-            <div class="card" onclick="openModal(1)">
-                <div class="card-header">
-                    <span class="card-name">上海携程国际旅行社有限公司</span>
-                    <span class="card-date">2022.05 - 2025.12</span>
-                </div>
-                <div class="card-sub">高级知识分析师 | 国际业务部门</div>
-                <span class="card-more">点击查看完整描述 →</span>
-            </div>
-        </section>
-
-        <section id="projects">
-            <h2 class="section-title">项目经历</h2>
-            <div class="card" onclick="openModal(2)">
-                <div class="card-header">
-                    <span class="card-name">工单时长赋值与资源配置项目</span>
-                    <span class="card-date">2025.01 - 2025.06</span>
-                </div>
-                <div class="card-sub">处理时效从 17h 优化至 12h/case</div>
-                <span class="card-more">点击查看完整描述 →</span>
-            </div>
-            <div class="card" onclick="openModal(3)">
-                <div class="card-header">
-                    <span class="card-name">服务效率提升与人力成本降低项目</span>
-                    <span class="card-date">2025.01 - 2025.05</span>
-                </div>
-                <div class="card-sub">Voip 接通率提升，单月节省人力约 4万</div>
-                <span class="card-more">点击查看完整描述 →</span>
-            </div>
-            <div class="card" onclick="openModal(4)">
-                <div class="card-header">
-                    <span class="card-name">供应商服务流程标准化项目</span>
-                    <span class="card-date">2025.01 - 2025.05</span>
-                </div>
-                <div class="card-sub">证件问题暂缓单月减 80%</div>
-                <span class="card-more">点击查看完整描述 →</span>
-            </div>
-        </section>
-
-        <div style="height: 60px;"></div>
-    </main>
-
-    <div class="modal" id="detailModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="nav-ctrl">
-                    <button class="ctrl-btn" onclick="prevItem()">‹</button>
-                    <button class="ctrl-btn" onclick="nextItem()">›</button>
-                    <span id="modalCounter" style="font-size: 12px; color: var(--text-secondary); margin-left: 5px; line-height: 36px;">1 / 5</span>
-                </div>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
-            <div id="modalBody" class="modal-body"></div>
-            <div class="bottom-nav" style="display:none;">
-                 <button class="ctrl-btn" onclick="prevItem()">‹</button>
-                 <button class="ctrl-btn" onclick="nextItem()">›</button>
+            <div class="scroll-hint">
+                <span>向下滚动</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+                </svg>
             </div>
         </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">自我评价</h2>
+                <p class="section-subtitle">具备3年+服务运营与数据驱动经验，核心能力覆盖"数据拆解-流程优化-跨部门协同"</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card" data-skill="data">
+                    <div class="skill-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="9" y1="21" x2="9" y2="9"/>
+                        </svg>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-name">数据端</div>
+                        <div class="skill-level">精通</div>
+                        <div class="skill-desc">精通SQL/Excel，能独立完成业务数据集拆解、指标计算与可视化报表输出</div>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-skill="business">
+                    <div class="skill-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"/>
+                            <line x1="12" y1="20" x2="12" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        </svg>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-name">业务端</div>
+                        <div class="skill-level">精通</div>
+                        <div class="skill-desc">主导过工单智能分配、用户体验优化等项目，实现效率升29%、人力成本降18%、核心业务NPS升5%</div>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-skill="tools">
+                    <div class="skill-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                    </div>
+                    <div class="skill-content">
+                        <div class="skill-name">AI工具端</div>
+                        <div class="skill-level">精通</div>
+                        <div class="skill-desc">快速落地AI建议，如本站利用GitHub Pages部署；精通Gemini/GPT生成复杂SQL/Excel逻辑</div>
+                        <div class="view-more">
+                            <span>查看AI能力详情</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="evaluation-card" style="margin-top: 40px;">
+                <p class="evaluation-text">
+                    具备"业务痛点定位+落地执行"能力，适配互联网/科技行业的服务效能、资源优化类岗位。<br><br>
+                    语言能力：英语流利（早稻田大学英语语言文学本科），日语N1（2021.12获得）。<br><br>
+                    因个人职业规划聚焦"数据+AI驱动的运营场景"，当前岗位在数据权限开放、前沿工具应用上与长期方向匹配度不足，故寻求更契合的发展平台。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">工作经历</h2>
+                <p class="section-subtitle">聚焦跨部门协同 + 数据驱动效率提优</p>
+            </div>
+            <div class="experience-section">
+                <!-- Experience 1 -->
+                <div class="experience-card" data-exp="pingan">
+                    <div class="exp-main">
+                        <div class="exp-company">平安健康互联网股份有限公司</div>
+                        <div class="exp-position">用户体验管理岗 | 服务质量部</div>
+                        <div class="exp-highlight">核心业务NPS提升5% | 跟进12个体验优化项目</div>
+                        <div class="view-more">
+                            <span>点击查看完整描述</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="exp-period">2026.01 - 至今</div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="experience-card" data-exp="ctrip">
+                    <div class="exp-main">
+                        <div class="exp-company">上海携程国际旅行社有限公司</div>
+                        <div class="exp-position">高级知识分析师 | 日本市场机票板块</div>
+                        <div class="exp-highlight">服务效率提升25% | 人力成本削减18%</div>
+                        <div class="view-more">
+                            <span>点击查看完整描述</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="exp-period">2022.05 - 2025.12</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">项目经历</h2>
+                <p class="section-subtitle">用数据和AI创造可量化的价值</p>
+            </div>
+            <div class="experience-section">
+                <!-- Project 1 -->
+                <div class="experience-card" data-exp="project1">
+                    <div class="exp-main">
+                        <div class="exp-company">工单时长赋值与资源合理配置</div>
+                        <div class="exp-position">项目负责人</div>
+                        <div class="exp-highlight">处理效率：17h → 12h/case | 承载量提升35%</div>
+                        <div class="view-more">
+                            <span>点击查看完整描述</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="exp-period">2025.01 - 2025.06</div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="experience-card" data-exp="project2">
+                    <div class="exp-main">
+                        <div class="exp-company">服务效率提升与人力成本降低</div>
+                        <div class="exp-position">项目负责人</div>
+                        <div class="exp-highlight">工单量降60% | 接通率23% → 28% | 月省4万人力成本</div>
+                        <div class="view-more">
+                            <span>点击查看完整描述</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="exp-period">2025.01 - 2025.05</div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="experience-card" data-exp="project3">
+                    <div class="exp-main">
+                        <div class="exp-company">供应商服务流程标准化与效率提升</div>
+                        <div class="exp-position">项目负责人</div>
+                        <div class="exp-highlight">暂缓出票量月减80% | 建立标准化闭环</div>
+                        <div class="view-more">
+                            <span>点击查看完整描述</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="exp-period">2025.01 - 2025.05</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 陈江浩 | 用数据和AI创造价值</p>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <button class="modal-nav prev" id="modalPrev">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+        </button>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="modal-type-tag" id="modalTypeTag"></div>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <p class="modal-subtitle" id="modalSubtitle"></p>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+        <button class="modal-nav next" id="modalNext">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"/>
+            </svg>
+        </button>
     </div>
 
     <script>
-        const resumeData = [
-            {
-                title: "平安健康互联网股份有限公司",
-                period: "2026.01 - 至今",
-                content: `
-                    <p><strong>岗位：</strong>服务质量部 | 用户体验管理岗 [cite: 18]</p>
-                    <p>以“用户声音-业务推动”为核心链路：</p>
-                    <ul>
-                        <li><strong>需求侧：</strong>统筹调研与 NPS 反馈，通过智能看板沉淀核心业务痛点 [cite: 20]。</li>
-                        <li><strong>供给侧：</strong>联动业务方推动优化落地，核心业务 NPS 提升 5% [cite: 21]。</li>
-                    </ul>`
+        // Progress bar functionality
+        const progressBar = document.getElementById('progressBar');
+        
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            progressBar.style.height = scrolled + '%';
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('modal');
+        const modalClose = document.getElementById('modalClose');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalSubtitle = document.getElementById('modalSubtitle');
+        const modalBody = document.getElementById('modalBody');
+
+        const data = {
+            pingan: {
+                type: 'experience',
+                title: '平安健康互联网股份有限公司',
+                subtitle: '用户体验管理岗 | 服务质量部 | 2026.01 - 至今',
+                body: `
+                    <p><strong>聚焦全渠道用户体验优化</strong>，以"用户声音-业务推动"为核心链路开展工作：</p>
+                    <p><strong>需求侧：</strong>统筹调研问卷、NPS反馈等全渠道用户声音收集，通过内部智能文档（飞书多维表格同源工具）完成数据整理、可视化看板输出，沉淀体检/健康商城/护工服务等核心业务的体验痛点。</p>
+                    <p><strong>供给侧：</strong>联动业务方推动优化落地（如服务策略迭代、供应商资源覆盖率提升、产品功能调整），累计跟进12个体验优化项目，<span class="highlight">核心业务NPS提升5%</span>。</p>
+                `
             },
-            {
-                title: "上海携程国际旅行社有限公司",
-                period: "2022.05 - 2025.12",
-                content: `
-                    <p><strong>岗位：</strong>国际业务部门 | 高级知识分析师 [cite: 30]</p>
-                    <p>以数据拆解+流程梳理定位供应商与策略问题：</p>
-                    <ul>
-                        <li><strong>对外：</strong>推动看板上线与流程规范，效率升 25%，成本减 18% [cite: 34]。</li>
-                        <li><strong>对内：</strong>强化员工 VoIP 使用与处理能力，响应时效缩短 20% [cite: 35]。</li>
-                    </ul>`
+            ctrip: {
+                type: 'experience',
+                title: '上海携程国际旅行社有限公司',
+                subtitle: '高级知识分析师 | 国际业务部门 - 日本市场机票板块 | 2022.05 - 2025.12',
+                body: `
+                    <p><strong>聚焦服务团队痛点</strong>，以数据拆解+流程梳理能力，定位供应商出票不规范、外呼策略低效等核心问题：</p>
+                    <p><strong>对外：</strong>联动产品/业务端推动优化（如上线时段接通率数据看板、规范供应商出票流程），实现对客服务效率提升25%、人力成本削减18%。</p>
+                    <p><strong>对内：</strong>开展专项培训（如VoIP工具使用、问题应对技巧），强化员工处理能力，团队响应时效缩短20%。</p>
+                `
             },
-            {
-                title: "工单时长赋值与资源配置项目",
-                period: "2025.01 - 2025.06",
-                content: `
-                    <p><strong>背景：</strong>解决工单分配“忙闲不均”现象，实现智能化分配 [cite: 41]。</p>
+            project1: {
+                type: 'project',
+                title: '工单时长赋值与资源合理配置项目',
+                subtitle: '项目负责人 | 2025.01 - 2025.06',
+                body: `
+                    <p><strong>项目背景与目标：</strong>因员工能力差异导致工单处理效率不同，而工单分配系统未实现"能者多分"的智能化分配，出现"忙闲不均"现象，旨在优化工单分配机制，提升整体处理效率。</p>
+                    <p><strong>核心职责与行动：</strong></p>
                     <ul>
-                        <li><strong>行动：</strong>从排队模式转为智能化分配，并为各业务类型合理赋值 [cite: 43, 44]。</li>
-                        <li><strong>成果：</strong>时效从 17h 降至 12h/case，单日承载量升 35% [cite: 45]。</li>
-                    </ul>`
+                        <li>推动工单分配模式变革，从传统排队分配转变为依据个人处理上限分配的智能化模式，实现资源合理调配。</li>
+                        <li>取数分析各类工单类型，结合领班经验，为每个业务类型合理赋值，确保分配标准科学可行。</li>
+                    </ul>
+                    <p><strong>项目成果：</strong>工单处理效率大幅提升，从<span class="highlight">17hour/case优化至12hour/case</span>，有效解决"忙闲不均"问题，团队单日工单承载量提升35%。</p>
+                `
             },
-            {
-                title: "服务效率提升与人力成本降低项目",
-                period: "2025.01 - 2025.05",
-                content: `
-                    <p><strong>背景：</strong>针对日线航变场景，优化联系流程减少人力消耗 [cite: 47]。</p>
+            project2: {
+                type: 'project',
+                title: '数据驱动下的服务效率提升与人力成本降低项目',
+                subtitle: '项目负责人 | 2025.01 - 2025.05',
+                body: `
+                    <p><strong>项目背景与目标：</strong>针对日本市场航班变动场景，需从旅行社单向联系客人通知信息，因联系不上客人严重消耗人力，旨在通过优化联系方式与流程减少人力成本。</p>
+                    <p><strong>核心职责与行动：</strong></p>
                     <ul>
-                        <li><strong>行动：</strong>推动自动化外呼/邮件上线，推广 VoIP 使用率至 60% [cite: 50, 51]。</li>
-                        <li><strong>成果：</strong>接通率升至 28%，单月节省人力成本约 4 万元 [cite: 52]。</li>
-                    </ul>`
+                        <li>取数对比起飞前2个半月内每隔15天联系上客人的比例，同时对比Voip电话和普通电话接通率，为后续优化提供数据支撑。</li>
+                        <li>推动自动化外呼和自动化邮件上线，将人工联系的阈值时长从2个半月调整到半个月，减少人工介入范围。</li>
+                        <li>在团队内推广并监督Voip的使用率，成功将Voip使用率从<span class="highlight">5%提升至60%</span>，提升联系效率。</li>
+                    </ul>
+                    <p><strong>项目成果：</strong>工单量从3000-4000单（降幅约60%），电话接通率从23%提升至28%，单月节省人力成本约4万元。</p>
+                `
             },
-            {
-                title: "供应商服务流程标准化项目",
-                period: "2025.01 - 2025.05",
-                content: `
-                    <p><strong>背景：</strong>解决供应商冗余索要证件导致的暂缓出票痛点 [cite: 53]。</p>
+            project3: {
+                type: 'project',
+                title: '供应商服务流程标准化与效率提升项目',
+                subtitle: '项目负责人 | 2025.01 - 2025.05',
+                body: `
+                    <p><strong>项目背景与目标：</strong>Trip.com无证件机票订单占比70%，但2025年前2个月有200个case因产品已打"无证件预定"标签，供应商仍索要冗余证件而暂缓出票，造成商户人力浪费与客诉率上升，目标从流程合规性层面解决对商服务痛点。</p>
+                    <p><strong>核心职责与行动：</strong></p>
                     <ul>
-                        <li><strong>行动：</strong>精准提取暂缓单据数据，推送业务规范要求并监督执行 [cite: 55, 56]。</li>
-                        <li><strong>成果：</strong>暂缓出票量月减 80%，建立跨部门流程闭环 [cite: 57]。</li>
-                    </ul>`
+                        <li>从数据中提取关键字自建字段，精准提取无证件预定暂缓单据的数据，明确问题核心。</li>
+                        <li>列举Top问题供应商，在业务沟通会议上同步供应商明细，向供应商推送业务规范要求，推动合规执行。</li>
+                    </ul>
+                    <p><strong>项目成果：</strong>供应商因证件问题暂缓出票量<span class="highlight">月减80%</span>，建立"数据监控-跨部门同步-流程标准化"闭环，该模式复用至2个同类服务场景。</p>
+                `
+            },
+            tools: {
+                type: 'skill',
+                title: 'AI工具端能力详解',
+                subtitle: '快速落地AI建议，高效实现想法',
+                body: `
+                    <p><strong>核心能力：快速将AI建议转化为可落地方案</strong></p>
+                    <p>我的优势不在于搭建复杂的工作流，而是能够快速理解AI给出的建议，并迅速将其落地实施。例如：</p>
+                    
+                    <p><strong>本站案例：个人作品集快速构建</strong></p>
+                    <ul>
+                        <li>通过AI建议获取网站框架和设计思路</li>
+                        <li>利用GitHub Pages实现快速部署上线</li>
+                        <li>从想法到上线，整个过程高效迭代</li>
+                    </ul>
+                    
+                    <p><strong>常用AI工具与场景：</strong></p>
+                    <ul>
+                        <li><strong>Gemini/GPT：</strong>生成复杂SQL查询逻辑、Excel高级函数公式，大幅提升数据处理效率</li>
+                        <li><strong>AI代码助手：</strong>快速生成网页代码、数据处理脚本，加速开发迭代</li>
+                        <li><strong>AI工作流平台：</strong>获取业务场景解决方案，快速转化为实际操作流程</li>
+                    </ul>
+                    
+                    <p><strong>实际应用价值：</strong></p>
+                    <p>在工作中，我习惯通过AI工具快速解决技术瓶颈，将更多精力投入到业务逻辑和策略思考上。这种"AI建议+快速落地"的能力，让我能够在不依赖专业开发团队的情况下，独立完成从数据分析到产品原型的全流程工作。</p>
+                `
             }
-        ];
+        };
+
+        // Get all clickable items
+        const clickableItems = [];
+        document.querySelectorAll('.experience-card, .skill-card').forEach(card => {
+            const key = card.getAttribute('data-exp') || card.getAttribute('data-skill');
+            if (data[key]) {
+                clickableItems.push({ key, card });
+            }
+        });
 
         let currentIndex = 0;
 
+        const modalTypeTag = document.getElementById('modalTypeTag');
+
         function openModal(index) {
             currentIndex = index;
-            renderModal();
-            document.getElementById('detailModal').style.display = 'flex';
+            const item = clickableItems[currentIndex];
+            const itemData = data[item.key];
+            
+            // Set type tag
+            modalTypeTag.className = 'modal-type-tag ' + itemData.type;
+            const typeText = itemData.type === 'experience' ? '工作经历' : 
+                            itemData.type === 'project' ? '项目经历' : '能力详情';
+            modalTypeTag.textContent = typeText;
+            
+            modalTitle.textContent = itemData.title;
+            modalSubtitle.textContent = itemData.subtitle;
+            modalBody.innerHTML = itemData.body;
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            updateNavButtons();
         }
 
         function closeModal() {
-            document.getElementById('detailModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
         }
 
-        function renderModal() {
-            const data = resumeData[currentIndex];
-            document.getElementById('modalCounter').innerText = (currentIndex + 1) + " / " + resumeData.length;
-            document.getElementById('modalBody').innerHTML = '<h3>' + data.title + '</h3><p style="color:#a1a1a6; font-size:12px; margin-top:-10px; margin-bottom:20px;">' + data.period + '</p>' + data.content;
-            document.getElementById('modalBody').scrollTop = 0;
+        function goToPrev() {
+            if (currentIndex > 0) {
+                openModal(currentIndex - 1);
+            }
         }
 
-        function nextItem() {
-            currentIndex = (currentIndex + 1) % resumeData.length;
-            renderModal();
+        function goToNext() {
+            if (currentIndex < clickableItems.length - 1) {
+                openModal(currentIndex + 1);
+            }
         }
 
-        function prevItem() {
-            currentIndex = (currentIndex - 1 + resumeData.length) % resumeData.length;
-            renderModal();
+        function updateNavButtons() {
+            modalPrev.classList.toggle('disabled', currentIndex === 0);
+            modalNext.classList.toggle('disabled', currentIndex === clickableItems.length - 1);
         }
 
-        // 点击背景关闭
-        document.getElementById('detailModal').onclick = function(e) {
-            if (e.target === this) closeModal();
-        };
+        // Add click event to all cards
+        clickableItems.forEach((item, index) => {
+            item.card.addEventListener('click', () => {
+                openModal(index);
+            });
+        });
 
-        // 手机端适配
-        if(window.innerWidth < 768) {
-            document.querySelector('.bottom-nav').style.display = 'flex';
-        }
+        // Modal close button
+        modalClose.addEventListener('click', closeModal);
+
+        // Navigation buttons
+        modalPrev.addEventListener('click', goToPrev);
+        modalNext.addEventListener('click', goToNext);
+
+        // Close modal on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'ArrowLeft') {
+                goToPrev();
+            } else if (e.key === 'ArrowRight') {
+                goToNext();
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
